@@ -11,6 +11,14 @@
     flex-wrap: wrap;
     margin-top: 2rem;
   }
+
+  .app__description{
+    text-align: justify;
+    font-size: large;
+    font-weight: lighter;
+    color: var(--gray-color);
+    margin-top: 5%;
+  }
   
   .app__profile-item {
     width: 190px;
@@ -27,7 +35,7 @@
       object-fit: cover;
     }
   
-    @media screen and (min-width: 2000px) {
+    @media screen and (min-width: 1500px) {
       width: 370px;
       margin: 2rem 4rem;
   
