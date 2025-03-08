@@ -71,8 +71,8 @@ const Work = () => {
               <h4 className="bold-text" style={{color:theme === 'dark'?'#ffffff':""}}>{work?.title}</h4>
               {/* <p className="p-text" style={{ marginTop: 10 }}>{work?.description}</p> */}
 
-              <div className="app__work-tag app__flex">
-                <p className="p-text">{work?.tags ? work?.tags[0]:""}</p>
+              <div className="app__work-tag app__flex" style={{backgroundColor:theme === 'dark'?'#38305c':"",color:theme === 'dark'?'#ffffff':""}}>
+                <p className="p-text" style={{color:theme === 'dark'?'#ffffff':""}}>{work?.tags ? work?.tags[0]:""}</p>
               </div>
             </div>
           </div>
