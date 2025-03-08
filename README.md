@@ -11,4 +11,4 @@ Currently, two official plugins are available:
 # Color Pallete for dark theme
 - color 1 - #20171f 
 - color 2 - #1a1a2b 
-- color 2 - #190a32 
+- color 3 - #190a32 
