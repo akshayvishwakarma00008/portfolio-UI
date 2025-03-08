@@ -21,6 +21,10 @@ const Footer = () => {
   const handleSubmit = () => {
     setLoading(true);
 
+    if (!formData.username || !formData.email || !formData.message) {
+      setLoading(false);
+      return alert("Oops! It looks like you missed some fields. Please complete the form.");
+    }
     const contact = {
       _type: 'contact',
       name: formData.username,
@@ -67,7 +71,7 @@ const Footer = () => {
         </div>
       ) : (
         <div>
-          <h3 className="head-text">
+          <h3 className="head-text" style={{color:theme === 'dark'?'#ffffff':""}}>
             Thank you for getting in touch!
           </h3>
         </div>
