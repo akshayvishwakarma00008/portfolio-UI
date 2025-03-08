@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { useSelector } from "react-redux";
 import { images } from '../../constants';
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { client } from '../../client';
@@ -10,7 +10,7 @@ const Footer = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const theme = useSelector((state) => state.theme.theme);
   const { username, email, message } = formData;
 
   const handleChangeInput = (e) => {
@@ -38,17 +38,13 @@ const Footer = () => {
 
   return (
     <>
-      <h2 className="head-text">Take a coffee & chat with me</h2>
+      <h2 className="head-text" style={{color:theme === 'dark'?'#ffffff':""}}>Connect with <span>me</span></h2>
 
       <div className="app__footer-cards">
         <div className="app__footer-card ">
           <img src={images.email} alt="email" />
           <a href="mailto:hello@micael.com" className="p-text">akshayvishwakarma812@gmail.com</a>
         </div>
-        {/* <div className="app__footer-card">
-          <img src={images.mobile} alt="phone" />
-          <a href="tel:+1 (123) 456-7890" className="p-text">+1 (123) 456-7890</a>
-        </div> */}
       </div>
       {!isFormSubmitted ? (
         <div className="app__footer-form app__flex">

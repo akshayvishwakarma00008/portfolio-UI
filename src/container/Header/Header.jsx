@@ -2,6 +2,7 @@ import './Header.scss'
 import {motion} from 'framer-motion'
 import { images } from '../../constants';
 import { AppWrap } from '../../wrapper';
+import { useSelector } from 'react-redux';
 
 const scaleVariants = {
   whileInView: {
@@ -15,6 +16,8 @@ const scaleVariants = {
 };
 // eslint-disable-next-line react-refresh/only-export-components
 const Header = () => {
+  const theme = useSelector((state) => state.theme.theme);
+  console.log("theme from useSelector", theme);
   return (
     <div className="app__header app__flex">
     <motion.div
@@ -69,4 +72,4 @@ const Header = () => {
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export default AppWrap(Header,'home')
+export default AppWrap(Header,'home', 'app__whitebg')
