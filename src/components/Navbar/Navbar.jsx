@@ -1,17 +1,30 @@
 import { useState } from "react";
 import "./Navbar.scss";
-// import {images} from "../../constants"
+
 import { HiMenuAlt4, HiX } from "react-icons/hi";
+
 import { motion } from "framer-motion";
 import DownloadResume from "./DownloadResume";
+import { useDispatch, useSelector } from "react-redux";
+
+import { toggleTheme } from "../../redux/slices/AppTheme/AppTheme";
+import { FaSun, FaMoon } from "react-icons/fa";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+
+  const dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme.theme);
+  // console.log("theme",theme);
+
+  const handleToggle = () => {
+    dispatch(toggleTheme());
+  };
+
   return (
-    <nav className="app__navbar">
+    <nav className="app__navbar" style={{backgroundColor:theme === 'dark' ? '#20171f':""}}>
       <div className="app__navbar-logo">
-        {/* <img src={images.logo} alt="logo" /> */}
         <span
-          style={{ color: "#293aa2", fontSize: "2rem", fontWeight: "bold" }}
+          style={{ fontSize: "2rem", fontWeight: "bold", color:theme === 'dark' ? '#ffffff' :"#293aa2"}}
         >
           PORTFOLIO
         </span>
@@ -20,7 +33,7 @@ const Navbar = () => {
         {["home", "about", "work", "skills", "contact"].map((item) => (
           <li className="app__flex p-text" key={`link-${item}`}>
             <div>
-              <a href={`#${item}`}>{item}</a>
+              <a href={`#${item}`} style={{color:theme === 'dark' ? '#ffffff' :"#293aa2"}}>{item}</a>
             </div>
           </li>
         ))}
@@ -46,6 +59,10 @@ const Navbar = () => {
             </ul>
           </motion.div>
         )}
+      </div>
+
+      <div className="theme-toggle" onClick={handleToggle} style={{ marginRight: "15px", cursor:"pointer" }}>
+        {theme === "dark" ? <FaSun size={18} color="#ffffff" /> : <FaMoon size={18} color="#293aa2" />}
       </div>
 
       <div>

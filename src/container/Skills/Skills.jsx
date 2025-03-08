@@ -1,7 +1,7 @@
 import React,{ useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Tooltip } from "react-tooltip";
-
+import { useSelector } from "react-redux";
 import { AppWrap, MotionWrap } from "../../wrapper";
 import { urlFor, client } from "../../client";
 import "./Skills.scss";
@@ -10,9 +10,7 @@ import "./Skills.scss";
 const Skills = () => {
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
-  console.log("skills", skills);
-  console.log("experiences", experiences);
-
+  const theme = useSelector((state) => state.theme.theme);
   useEffect(() => {
     const query = '*[_type == "experiences"]';
     const skillsQuery = '*[_type == "skills"]';
@@ -28,7 +26,7 @@ const Skills = () => {
 
   return (
     <>
-      <h2 className="head-text">Skills & <span>Experiences</span></h2>
+      <h2 className="head-text" style={{color:theme === 'dark'?'#ffffff':""}}>Skills & <span>Experiences</span></h2>
 
       <div className="app__skills-container">
         <motion.div className="app__skills-list">
@@ -66,7 +64,7 @@ const Skills = () => {
                       //data-for={work.name}
                       data-tooltip-id={work.description}
                     >
-                      <h4 className="bold-text">{work.name}</h4>
+                      <h4 className="bold-text" style={{color:theme === 'dark'?'#ffffff':""}}>{work.name}</h4>
                       <p className="p-text">@  {work.company}</p>
                     </motion.div>
                     <Tooltip
