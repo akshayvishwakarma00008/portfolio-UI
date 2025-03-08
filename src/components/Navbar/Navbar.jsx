@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="app__navbar" style={{backgroundColor:theme === 'dark' ? '#20171f':""}}>
+    <nav className="app__navbar" style={{backgroundColor:theme === 'dark' ? '#1a1a2b':""}}>
       <div className="app__navbar-logo">
         <span
           style={{ fontSize: "2rem", fontWeight: "bold", color:theme === 'dark' ? '#ffffff' :"#293aa2"}}
@@ -46,8 +46,9 @@ const Navbar = () => {
           <motion.div
             whileInView={{ x: [300, 0] }}
             transition={{ duration: 0.85, ease: "easeOut" }}
+            style={{backgroundColor:theme === 'dark' ? '#20171f':""}}
           >
-            <HiX onClick={() => setToggle(false)} />
+            <HiX onClick={() => setToggle(false)} style={{color:theme === 'dark' ? '#ffffff':""}} />
             <ul>
               {["home", "about", "work", "skills", "contact"].map((item) => (
                 <li key={item}>
@@ -56,16 +57,24 @@ const Navbar = () => {
                   </a>
                 </li>
               ))}
+              <li className="theme-toggle" onClick={handleToggle} style={{ cursor: "pointer" }}>
+                {theme === "dark" ? <FaSun size={18} color="#ffffff" /> : <FaMoon size={18} color="#293aa2" />}
+              </li>
+              
+              {/* Download Resume Button for Small Screens */}
+              <li>
+                <DownloadResume />
+              </li>
             </ul>
           </motion.div>
         )}
       </div>
 
-      <div className="theme-toggle" onClick={handleToggle} style={{ marginRight: "15px", cursor:"pointer" }}>
+      <div className="theme-toggle large-screen" onClick={handleToggle} style={{ marginRight: "15px", cursor:"pointer" }}>
         {theme === "dark" ? <FaSun size={18} color="#ffffff" /> : <FaMoon size={18} color="#293aa2" />}
       </div>
 
-      <div>
+      <div className="large-screen">
         <DownloadResume />
       </div>
     </nav>

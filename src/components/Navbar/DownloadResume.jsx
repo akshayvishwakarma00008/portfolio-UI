@@ -5,7 +5,6 @@ import "./Navbar.scss";
 
 const DownloadResume = () => {
     const [files, setFiles] = useState([]);
-    console.log('files: ', files);
 
   useEffect(() => {
     const fetchFiles = async () => {

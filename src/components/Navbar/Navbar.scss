@@ -10,7 +10,7 @@
   // box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  // border: 1px solid rgba(255, 255, 255, 0.18);
   position: fixed;
   z-index: 2;
 }
@@ -186,5 +186,29 @@ button {
 
   &:hover {
     background-color: #2430af;
+  }
+}
+
+.large-screen {
+  display: flex;
+  
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
+
+.app__navbar-menu {
+  ul {
+    .theme-toggle,
+    li {
+      display: block;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    .theme-toggle,
+    li {
+      display: none;
+    }
   }
 }

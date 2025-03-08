@@ -2,8 +2,8 @@ import { NavigationDots, SocialMedia } from "../components";
 import { useSelector } from "react-redux";
 
 const AppWrap = (Component, idName, classNames) =>
+  
   function HOC() {
-
     const theme = useSelector((state) => state.theme.theme);
     return (
       <div
@@ -14,7 +14,7 @@ const AppWrap = (Component, idName, classNames) =>
             theme === "dark"
               ? idName === "about" || idName === "skills"
                 ? "#20171f"
-                : "#596773"
+                : "#1a1a2b"
               : "",
         }}
       >

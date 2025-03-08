@@ -11,8 +11,6 @@ const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [testimonials, setTestimonials] = useState([]);
   const [brands, setBrands] = useState([]);
-  console.log("testimonials",testimonials);
-  console.log("brands",brands);
 
   const handleClick = (index) => {
     setCurrentIndex(index);

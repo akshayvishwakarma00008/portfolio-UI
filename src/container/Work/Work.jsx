@@ -60,7 +60,7 @@ const Work = () => {
         className="app__work-portfolio"
       >
         {filterWork.map((work, index) => (
-          <div className="app__work-item app__flex" key={index} style={{backgroundColor:theme === 'dark'?'#454F59':""}}>
+          <div className="app__work-item app__flex" key={index} style={{backgroundColor:theme === 'dark'?'#38305c':""}}>
             <div
               className="app__work-img app__flex"
             >

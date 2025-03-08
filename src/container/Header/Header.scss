@@ -1,6 +1,6 @@
 #home {
   position: relative;
-  background: url("../../assets/bgIMG.png");
+  // background: url("../../assets/bgIMG.png");
   background-size: cover;
   background-position: center;
   background-repeat: repeat;
@@ -212,5 +212,11 @@
 
   @media screen and (max-width: 1200px) {
     margin: 2rem 0;
+  }
+}
+
+.circle-cmp{
+  &:hover {
+    box-shadow: 0 0 25px #fef4f5;
   }
 }
