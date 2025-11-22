@@ -13,6 +13,9 @@ const Work = () => {
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
 
   const theme = useSelector((state) => state.theme.theme);
+  const textColor = theme === 'dark' ? '#ffffff' : '#000000';
+  const subtleColor = theme === 'dark' ? '#b0b0b0' : '#666666';
+  const accentColor = theme === 'dark' ? '#ffffff' : '#3137a2';
 
   useEffect(() => {
     const query = '*[_type == "works"]';
@@ -38,44 +41,105 @@ const Work = () => {
     }, 500);
   };
 
+  const filterTags = ['UI/UX', 'Web App', 'Mobile App', 'React JS', 'All'];
+
   return (
     <>
-      <h2 className="head-text" style={{color:theme === 'dark'?'#ffffff':""}}>My Creative <span>Portfolio</span> Section</h2>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="work__header"
+      >
+        <h2 className="head-text" style={{ color: textColor }}>
+          My Creative <span style={{ color: accentColor }}>Portfolio</span>
+        </h2>
+        <p className="work__tagline" style={{ color: subtleColor }}>
+          Showcasing my best projects and work samples
+        </p>
+      </motion.div>
 
-      <div className="app__work-filter">
-        {['UI/UX', 'Web App', 'Mobile App', 'React JS', 'All'].map((item, index) => (
-          <div
+      <motion.div
+        className="app__work-filter"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        {filterTags.map((item, index) => (
+          <motion.div
             key={index}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => handleWorkFilter(item)}
-            className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`}
+            className={`work__filter-item ${activeFilter === item ? 'item-active' : ''}`}
+            style={{
+              backgroundColor: activeFilter === item ? accentColor : (theme === 'dark' ? '#1a1a2e' : '#ffffff'),
+              color: activeFilter === item ? '#ffffff' : textColor,
+              borderColor: accentColor,
+            }}
           >
             {item}
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       <motion.div
         animate={animateCard}
-        transition={{ duration: 0.5, delayChildren: 0.5 }}
+        transition={{ duration: 0.5, delayChildren: 0.1, staggerChildren: 0.1 }}
         className="app__work-portfolio"
       >
         {filterWork.map((work, index) => (
-          <div className="app__work-item app__flex" key={index} style={{backgroundColor:theme === 'dark'?'#38305c':""}}>
-            <div
-              className="app__work-img app__flex"
-            >
-              <img src={ urlFor(work?.imgUrl)} alt={work?.name} />
+          <motion.div 
+            key={index}
+            whileInView={{ opacity: [0, 1], y: [50, 0] }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2)' }}
+            className="work__item"
+            style={{
+              backgroundColor: theme === 'dark' ? '#1a1a2e' : '#ffffff',
+              borderColor: accentColor,
+            }}
+          >
+            <div className="work__img-wrapper">
+              <img src={urlFor(work?.imgUrl)} alt={work?.name} />
+              {/* <div className="work__overlay">
+                <motion.div 
+                  className="work__tag"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    backgroundColor: accentColor,
+                    color: '#ffffff',
+                  }}
+                >
+                  {work?.tags ? work?.tags[0] : ''}
+                </motion.div>
+              </div> */}
             </div>
 
-            <div className="app__work-content app__flex">
-              <h4 className="bold-text" style={{color:theme === 'dark'?'#ffffff':""}}>{work?.title}</h4>
-              {/* <p className="p-text" style={{ marginTop: 10 }}>{work?.description}</p> */}
-
-              <div className="app__work-tag app__flex" style={{backgroundColor:theme === 'dark'?'#38305c':"",color:theme === 'dark'?'#ffffff':""}}>
-                <p className="p-text" style={{color:theme === 'dark'?'#ffffff':""}}>{work?.tags ? work?.tags[0]:""}</p>
+            <div className="work__content">
+              <h4 className="work__title" style={{ color: textColor }}>{work?.title}</h4>
+              <p className="work__description" style={{ color: subtleColor }}>
+                {work?.description || 'Creative project showcasing design and functionality'}
+              </p>
+              
+              <div className="work__tags-list">
+                {work?.tags?.map((tag, idx) => (
+                  <span 
+                    key={idx} 
+                    className="tag"
+                    style={{
+                      backgroundColor: theme === 'dark' ? 'rgba(139, 92, 246, 0.2)' : 'rgba(244, 123, 37, 0.1)',
+                      color: accentColor,
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </motion.div>
     </>
